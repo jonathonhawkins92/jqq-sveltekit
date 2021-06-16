@@ -22,9 +22,3 @@ export const fetchPokemon = async (): Promise<void> => {
 	});
 	pokemon.set(loadedPokemon);
 };
-
-// export const fetchPokemonById = async (
-// 	id: PokemonDetails['id'],
-// ): Promise<void> => {
-// 	if (pokemonDetails[id]) return pokemonDetails[id];
-// };
