@@ -11,5 +11,5 @@
 	href={`/pokemon/${id}`}
 >
 	<img class="h-40 w-40" src={image} alt={name} />
-	<h2 class="uppercase text-2xl">{id}: {name}</h2>
+	<h2 class="capitalize text-2xl">{id}: {name}</h2>
 </a>
