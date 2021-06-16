@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 const endpoints = { all: 'https://pokeapi.co/api/v2/pokemon?limit=151' };
 
-interface Pokemon {
+export interface Pokemon {
 	name: string;
 	id: number;
 	image: string;

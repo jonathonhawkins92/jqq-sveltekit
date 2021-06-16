@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import Nav from '../components/nav.svelte';
 </script>
 
-<header>
-	<Nav />
-</header>
-<main>
+<main class="p-8 max-w-3xl mx-auto">
+	<header>
+		<Nav />
+	</header>
 	<slot />
 </main>
 
