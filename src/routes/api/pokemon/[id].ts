@@ -11,7 +11,11 @@ interface Error extends Result {
 	error: string;
 }
 
-export async function get({ params }): Promise<Success | Error> {
+export async function get({
+	params,
+}: {
+	params: { id: string };
+}): Promise<Success | Error> {
 	try {
 		const { id } = params;
 		const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
