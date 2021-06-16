@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Pokemon } from '../stores/pokestore';
+	import type { PokemonDetails } from '../stores/pokestore';
 
-	export let name: Pokemon['name'];
-	export let id: Pokemon['id'];
-	export let image: Pokemon['image'];
+	export let name: PokemonDetails['name'];
+	export let id: PokemonDetails['id'];
+	export let image: PokemonDetails['image'];
 </script>
 
 <a

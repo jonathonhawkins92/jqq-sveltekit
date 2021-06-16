@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 const endpoints = { all: 'https://pokeapi.co/api/v2/pokemon?limit=151' };
 
-export interface Pokemon {
+export interface PokemonDetails {
 	name: string;
 	id: number;
 	image: string;
@@ -15,7 +15,7 @@ interface JsonResult<Results> {
 	results: Results;
 }
 
-export const pokemon = writable<Pokemon[]>([]);
+export const pokemon = writable<PokemonDetails[]>([]);
 
 export const fetchPokemon = async (): Promise<void> => {
 	const res = await fetch(endpoints.all, { method: 'get' });
@@ -32,6 +32,8 @@ export const fetchPokemon = async (): Promise<void> => {
 	pokemon.set(loadedPokemon);
 };
 
-// export const fetchPokemonById = async (id: string) => {
-// 	// if (pokemonDetails[id]) return pokemonDetails[id];
+// export const fetchPokemonById = async (
+// 	id: PokemonDetails['id'],
+// ): Promise<void> => {
+// 	if (pokemonDetails[id]) return pokemonDetails[id];
 // };

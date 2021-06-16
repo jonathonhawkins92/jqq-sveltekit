@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Card from '../components/card.svelte';
-	import type { Pokemon } from '../stores/pokestore';
+	import type { PokemonDetails } from '../stores/pokestore';
 
 	import { fetchPokemon, pokemon } from '../stores/pokestore';
 
@@ -10,7 +10,7 @@
 	});
 
 	let searchTerm = '';
-	let filteredPokemon: Pokemon[] = [];
+	let filteredPokemon: PokemonDetails[] = [];
 
 	$: {
 		if (searchTerm) {
