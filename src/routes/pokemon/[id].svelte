@@ -1,46 +1,21 @@
 <script context="module" lang="ts">
+	import type { Pokemon } from '../../../types/pokemon';
+
 	export async function load({ page }) {
 		const { id } = page.params;
 		const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
 		const res = await fetch(url);
-		const pokemon = await res.json();
+		const data: Pokemon = await res.json();
 		return {
 			props: {
-				pokemon,
+				pokemon: data,
 			},
 		};
 	}
 </script>
 
 <script lang="ts">
-	import type { PokemonDetails } from '../../stores/pokestore';
-
-	interface Type {
-		slot: number;
-		type: {
-			name: string;
-			url: string;
-		};
-	}
-	interface Sprites {
-		front_default: string;
-		front_shiny: string;
-		front_female: string | null;
-		front_shiny_female: string | null;
-		back_default: string;
-		back_shiny: string;
-		back_female: string | null;
-		back_shiny_female: string | null;
-	}
-	interface Pokemon extends PokemonDetails {
-		types: Type[];
-		height: number;
-		weight: number;
-		sprites: Sprites;
-	}
-
 	export let pokemon: Pokemon;
-	console.log(pokemon);
 	const type = pokemon.types[0].type.name;
 </script>
 

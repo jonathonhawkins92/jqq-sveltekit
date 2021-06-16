@@ -1,24 +1,44 @@
+<script context="module" lang="ts">
+	import type {
+		PokemonOverviewBase,
+		PokemonOverview,
+	} from '../../types/pokemon';
+
+	export async function load() {
+		const url = 'https://pokeapi.co/api/v2/pokemon?limit=151';
+		const res = await fetch(url);
+		const data: { results: PokemonOverviewBase[] } = await res.json();
+		const pokemon: PokemonOverview[] = data.results.map((p, index) => {
+			const id = index + 1;
+			return {
+				name: p.name,
+				id,
+				image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
+			};
+		});
+		return {
+			props: {
+				pokemon,
+			},
+		};
+	}
+</script>
+
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Card from '../components/card.svelte';
-	import type { PokemonDetails } from '../stores/pokestore';
 
-	import { fetchPokemon, pokemon } from '../stores/pokestore';
-
-	onMount(() => {
-		fetchPokemon();
-	});
+	export let pokemon: PokemonOverview[];
 
 	let searchTerm = '';
-	let filteredPokemon: PokemonDetails[] = [];
+	let filteredPokemon: PokemonOverview[] = [];
 
 	$: {
 		if (searchTerm) {
-			filteredPokemon = $pokemon.filter((p) =>
+			filteredPokemon = pokemon.filter((p) =>
 				p.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()),
 			);
 		} else {
-			filteredPokemon = [...$pokemon];
+			filteredPokemon = [...pokemon];
 		}
 	}
 </script>
